@@ -449,3 +449,154 @@ update 메소드를 사용
 
 person.update({'키':180,'몸무게':70})
 person
+
+# 특정 key:value를 삭제하려면 pop 메소드를 사용한다.
+person.pop('최종학력')
+print(person)
+# 모든 데이터를 삭제하려면 clear 메소드를 사용
+
+# 딕셔너리 안에 어떤 key가 있는지 확인하려면 keys 메소드 사용
+print(person.keys())        
+# 반대로 딕셔너리 안에 어떤 value가 있는지 확인하려면 values 메소드 사용
+print(person.values())
+# key와 value 모두 출력하는 items 메소드 존재
+print(person.items())
+
+'''
+딕셔너리 메소드
+fromkeys() 제공된 keys를 통해 새로운 딕셔너리 생성 및 반환
+popitem() 마지막에 추가된 데이터 삭제
+setdefault() key에 해당하는 value 반환 key가 없다면 새로 만들고
+defalut value 설정 및 반환
+'''
+
+'''
+리스트의 값 중 순서가 중요하고 중복값이 없어야 할 경우
+딕셔너리로 변경해서 중복값을 없애고 순서를 유지한 채 다시 리스트로 변경할 수 있음
+
+'''
+my_lili = [1,2,3,4,4,4]
+
+my_dic = dict.fromkeys(my_lili)
+print(my_dic)
+
+my_li2 = list(my_dic)
+my_li2
+
+# 21. 조건문
+
+# 변수가 참일 경우 특정 문장 실행 
+# if는 만약 ~ 다면, else는 그렇지 않다면을 의미
+
+today = '화요일'
+if today == '일요일':
+    print('놀아라')
+print('공부해라')
+
+today = '화요일'
+if today == '일요일':
+    print('공부 그만하고 놀아도 돼')
+else:
+    print("핸드폰 그만하고 앉아")
+print('준비해라')
+
+# 예제
+total = 2
+if total <= 4:
+    print('추가 금액 없습니다')
+else:
+    print('1인당 1만원 추가입니다')
+print('감사합니다')
+''' 
+예제설명
+토탈 인원이 4명을 초과하는 경우 1만원의 추가 금액이 있지만
+total 변수의 값은 2명이라 추가 금액 조건에 맞지 않아 추가금액이
+없다는 문구가 출력됨'''
+
+''' if 조건문 중에서는 elif라는 것도 있음 이것은
+앞의 조건의 참이 아닐 때 다른 조건을 다시 한 번 확인하기
+위한 용도로 사용됨
+elif는 갯수 상관없이 사용할 수 있음'''
+''' elif 예시
+if 조건1:
+    1 문장
+elif 조건2:
+    2 문장
+else 조건3:
+    3문장
+    '''
+
+today = '일요일'
+if today == '토요일':
+    print('아주 좋아 죽어')
+elif today == '일요일':
+    print('나쁘지 않아')
+else: 
+    print('지옥이야`~~~')
+
+# if 중첩(if 문 내에서 또 다른 if문을 사용하는 경우)
+
+yellow_card = 0
+foul = True
+if foul:
+    yellow_card += 1
+    if yellow_card == 2:
+        print('경고 누적 퇴장')
+    else :
+        print('다행이다')
+''' if문에서 foul을 받을 경우 yellow_card가 하나씩 증가하며 yellow_card
+가 2개가 될 경우 경고 누적 퇴장을 출력하는 if문 작동'''
+
+yellow_card = 0
+foul = False
+if foul:
+    yellow_card += 1
+    if yellow_card == 2:
+        print('경고 누적 퇴장')
+    else :
+        print('다행이다')
+else: 
+    print('주의')
+    ''' 반대로 foul이 False 라면 아래 if문이 전부 해당되지 않기때문에
+    맨 마지막 주의 문구만 출력됨'''
+
+# 예제
+min = 35 #게임시간
+if min > 20:
+    print("게임 많이 했네")
+    if min > 40:
+        print("당장 안꺼")
+else:
+    print('아직 많이 안했네')
+
+# 22. for 반복문
+''' 컴퓨터에게 특정 코드를 여러번 작성하지 않고 몇번 실행할 지 
+안내하는 반복문'''
+'''for 변수 in 반복 범위 또는 대상:
+    반복 수행문장'''
+
+for x in range(10): #range(10)은 10번을 반복하라는 의미, x는 변수를 의미
+    print('팔 벌려 뛰기 해')
+
+for x in range(10): # x는 range(10)으로 인해 반복할 때마다 숫자가 증가됨
+    print(f'팔 벌려 높이 뛰기 {x}회')
+#range(10)은 어떤 범위내에 숫자들을 만들어주는 기능을 함 0 이상 10 미만
+
+#예제
+for num in range(10):
+    print(f'음료 쿠폰(입장 번호{num+1})')
+''' num에 range(10)으로 인해 숫자가 들어가고 print 부분에 1씩 추가로
+더해지기 때문에 1부터 10번까지 출력됨'''
+
+''' range(10)의 경우 숫자가 10가 되면 멈춤을 의미
+range의 시작과 끝을 정하고 싶다면
+range(start,stop) start 이상 stop 미만
+형태로 사용하면 된다.'''
+
+for i in range(1,11):
+    print(f'아주 빨리빨리 오셔야 {i}번째에 들어올 수 있어요')
+
+''' 또 다른 형태로 range(start, stop, step)도 존재함
+start 이상 stop 미만 step 만큼 증가로 step 값을 정하면
+start stop 사이에서 step 값으로 정한만큼 올라감'''
+
