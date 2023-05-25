@@ -682,4 +682,205 @@ print(f'총 무게는 {weight}입니다')
 
 # 24. break
 
+''' 반복문에서 사용하는 것으로 반복문 내에서 반복 수행 중인 동작을 즉시 멈추고
+ 반복문을 탈출하는 역할'''
 
+drama = ['시즌1','시즌2','시즌3','시즌4','시즌5']
+
+for x in drama: # x에 drama 리스트의 값이 들어감
+    if x == '시즌3': # x에 시즌 3일 경우
+        print('탈출해야돼') # 해당 문구를 프린트 하고
+        break # 반복문을 멈춤
+    print(f'{x} 시청') # x가 시즌3가 들어가기 전까진 해당 문구 반복
+
+# 25. continue
+
+''' 반복문에서 어떤 경우에 동작을 건너뛰고 싶을 때 사용'''
+
+drama = ['시즌1','시즌2','시즌3','시즌4','시즌5']
+
+for x in drama: # x에 drama 리스트의 값이 들어감
+    if x == '시즌3': # x에 시즌 3일 경우
+        print('이건 건너뛰어') # 해당 문구를 출력
+        continue # 이후 즉시 다음 반복으로 넘어가게 됨
+    print(f'{x} 시청 중') # x가 시즌 3일 때는 출력되지 않고 그 이후 부터 출력됨
+
+for x in range(10):
+    if x % 2 == 1: # 0 이상 10 미만의 숫자 중 2로 나눴을 때 나머지가 1인 홀수인 경우에는 다음 반복으로 그렇지 않은 경우에는 출력하므로 0,2,4,6,8이 출력됨
+        continue
+    print(x)
+
+# 26. 리스트 컴프리헨션
+
+''' 리스트 안에 표현식(계산식)과 for문, if문을 한줄에 넣어 새로운 리스트를 만들어 내는 것'''
+
+products = ['JOA-2020','JOA-2021','SIRO-2021','SIRO-2022']
+recall = [] # recall 대상 제품
+
+for p in products:
+    if p.startswith('SIRO'): # 제품명이 SIRO로 시작되는가?
+        recall.append(p)# recall 리스트에 if문에 맞는 값을 넣는다
+
+print(recall)
+
+# 리스트 컴프리헨션 형태
+# new_list = [변수 활용 for 변수 in 반복대상 if 조건]
+
+my_list = [1,2,3,4,5]
+new_list = [x for x in my_list if x > 3] # my_list에서 값을 순회하면서 3보다 큰 값을 구함
+''' for x in 앞에 x가 붙는 이유는 앞에 x가 없을 경우 변수의 리스트 그대로 값이 들어가지만
+x+1, x*3, str(x)+'번째'(x를 문자열로 바꿈) 같이 조건을 적을 경우 리스트의 값이 변경되어 들어감'''
+
+print(new_list)
+
+# 위의 products 예시를 컴프리헨션으로 사용한다면
+
+products = ['JOA-2020','JOA-2021','SIRO-2021','SIRO-2022']
+recall = [x for x in products if x.startswith('SIRO')]
+print(recall)
+
+# 모든 모델 명에 se를 붙여줘
+products = ['JOA-2020','JOA-2021','SIRO-2021','SIRO-2022']
+recall = [x+'SE' for x in products]
+print(recall)
+
+# 모든 모델명을 소문자로 바꿔줘
+products = ['JOA-2020','JOA-2021','SIRO-2021','SIRO-2022']
+recall = [x.lower() for x in products]
+print(recall)
+
+# 22년 제품만 뽑는데 뒤에 (최신형)이라는 글자를 붙여줘
+products = ['JOA-2020','JOA-2021','SIRO-2021','SIRO-2022']
+recall = [x+'(최신형)' for x in products if x.endswith('22')]
+print(recall)
+
+# 22년 미만 제품만 뽑는데 앞에 (구형)이라는 글자를 붙여줘
+products = ['JOA-2020','JOA-2021','SIRO-2021','SIRO-2022']
+recall = ['(구형)'+ x for x in products if '2022' not in x]
+''' ('구형')+ x으로 x 값 앞에 구형을 붙이고 '2022' not in x를 통해
+값 not in 변수 형식으로 2022가 들어가지 않는 값만 리스트에 삽입'''
+print(recall)
+
+# 26. 함수
+
+''' 함수란 어떤 동작을 수행하는 코드들의 묶음,
+여러 곳에서 사용되는 코드는 하나의 함수로
+함수의 형태
+def 함수명():
+    수행할 문장
+함수는 형태를 정의만 하면 아무 역할을 하지 않음
+함수의 역할을 시키기 위해서는 호출이라는 것이 필요
+함수명() 형태로 호출시킴
+      '''
+
+def show_price(): #함수정의
+     print('커트 가격은 10000원 입니다.')
+show_price() # 함수 호출
+
+customer1 = '나장발'
+print(f'{customer1} 고객님')
+show_price()
+
+customer2 = '나수염'
+print(f'{customer2} 고객님')
+show_price()
+
+''' 함수명() 괄호 안에는 비워놓을 수 있지만 전달값(parameter)를 넣을 수 있음
+전달값은 콤마로 구분하여 여러 개 사용할 수 있고
+함수 내에서만 사용'''
+
+def show_price(customer): #함수정의 # customer 전달값은 show_price 함수를 호출하는 곳에 보내주는 전달값이며 함수 내에서 customer라는 변수를 사용가능
+     print(f'사랑하는 {customer} 고객님')
+     print('커트 가격은 10000원 입니다.')
+
+
+customer1 = '나장발'
+show_price(customer1)#호출 시 값 전달을 위해 변수 이름 작성
+
+customer2 = '나수염'
+show_price(customer2)#호출 시 값 전달을 위해 변수 이름 작성
+
+def now_nn(ss,dd):
+    print(f'{ss}나우나우{dd}')
+
+dd1 = '쉣'
+dd2 = '누가'
+now_nn(dd2,dd1)
+
+# 27. 반환값
+
+''' 함수 내에서 어떤 동작이나 연산을 수행하고 나서 그 함수를 호출한
+쪽으로 결과를 반환
+def 함수명(전달값):
+    수행할 문장
+    return 반환값
+    형태로 return 키워드를 사용한다
+    '''
+
+def get_price(): # 함수 정의
+    return 15000
+
+price = get_price() #함수 호출
+print(f'미용실 금액은 {price}원 입니다')
+
+# 단골 손님의 경우 5천원 할인 하려 함
+def get_price(is_vip): # True : 단골손님, False : 일반손님
+    if is_vip == True:
+        return 10000 # 단골손님
+    else :
+        return 15000 # 일반손님
+    
+price = get_price(True)# 함수를 호출 할때 True값으로 호출했기 때문에 단골손님으로 10000원이 결제
+print(f'커트 가격은 {price}원 입니다')
+
+''' 반환값은 튜플 형태로도 여러 개의 값들을 반환할 수 있음 return 키워드로
+값을 반환하게 되면 반환 즉시 함수에서 탈출'''
+
+# 28. 기본값
+
+''' 기본값이란 전달값에 기본으로 사용되는 값 
+형태로는 
+def 함수명(전달값=기본값):
+    수행할 문장
+    '''
+
+def get_price(is_vip=False):
+    if is_vip == True:
+        return 10000
+    else : 
+        return 15000
+    
+price = get_price()
+print(f'커트 가격은 {price}원 입니다')
+# 기본 값으로 False 설정됐기 때문에 단골인 경우에만 함수호출 괄호 안에 True만 넣으면 됨
+
+# 29. 키워드값
+
+''' 전달값이 여러개 있는 경우 전달값의 대상을 정해주는 것'''
+
+def get_price(is_vip=False,
+              is_birthday=False,
+              is_membership=False,
+              card=False,
+              review=False,
+              first_time=False):
+    if is_vip == True:
+        return 10000
+    elif is_birthday == True:
+        return 12000
+    elif is_membership == True:
+        return 13000
+    elif card == True:
+        return 14000
+    elif review == True:
+        return 11000
+    elif first_time == True:
+        return 10000
+    else :
+        return 15000
+    
+price = get_price(review=True) # 키워드 값의 순서는 상관 없음
+print(f'손님께서 결제할 금액은 {price}원 입니다')
+
+# 30. 가변인자
+    
