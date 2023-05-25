@@ -598,5 +598,88 @@ for i in range(1,11):
 
 ''' 또 다른 형태로 range(start, stop, step)도 존재함
 start 이상 stop 미만 step 만큼 증가로 step 값을 정하면
-start stop 사이에서 step 값으로 정한만큼 올라감'''
+start stop 사이에서 step 값으로 정한만큼 올라감
+단 step 값을 정해도 stop 값을 초과하지 않음'''
+
+for e in range(1, 100, 5):
+    print(f'아 그저 {e}위가')
+
+for n in range(1, 31, 10):
+    print(f'{n}번은 {n}번부터 {n+9}번까지 모아줘')
+
+'''
+for 반복문은 range같은 범위 뿐만 아닌 반복 대상(ex:리스트, 튜플,딕셔너리)
+같은 것도 for문으로 활용할 수 있음'''
+
+my_list = [1,2,3]
+
+for x in my_list:
+    print(x) # 이 경우 리스트 안에 있는 1,2,3을 각각 x에 대입하면서 
+'''
+1
+2
+3
+이라는 값이 출력하게 됨
+튜플의 경우에도 같음'''
+
+my_tuple = (1,2,3)
+
+for x in my_tuple:
+    print(x)
+
+# 단 딕셔너리는 조금 다름
+
+person = {'이름':'나귀욤','나이':27,'키':120,'몸무게':23}
+
+''' 딕셔너리는 key와 value로 이루어져있기 때문에'''
+
+for x in person.keys():
+    print(x)
+
+for x in person.values():
+    print(x)
+
+''' keys나 values와 같은 메소드를 사용해야 됨'''
+''' 혹은 둘 다 출력하고 싶은 경우'''
+
+person = {'이름':'나귀욤','나이':27,'키':120,'몸무게':23}
+for k, v in person.items():
+    print(k, v)
+# for 문에 변수를 두 개 넣고(ex : k, v) items 메소드를 사용하면 된다.
+
+# 뿐 만 아니라 일반 문자열도 for 반복문을 사용할 수 있다.
+
+fruit = 'apple'
+
+for a in fruit:
+    print(a)
+''' 이때는 문자열 내 한 글자 씩 변수에 삽입되기 때문에
+a
+p
+p
+l
+e
+라고 출력됨'''
+
+''' for 반복문은 리스트, 튜플과 같은 자료형은 컴마로 구분된 값을,
+문자열을 한 글자 씩 출력하며 123같은 정수는 반복대상으로 사용할 수 없음'''
+
+# 23. while 반복문
+
+''' for 반복문과는 차이점이 있는데 for는 정해진 범위나 데이터를 반복하는
+것이라면 while은 조건이 참인 동안 계속해서 반복하는 것
+'''
+
+max = 25 # 최대 허용 무게
+weight = 0 # 현재 무게
+item = 3 # 각 짐의 무게
+
+while weight + item <= max: # weight와 item을 더한 값이 max 값 보다 작거나 같을 때 까지
+    weight += item #weight(현재 무게)에 3을 더한다
+    print(f'짐이 추가됐습니다')
+print(f'총 무게는 {weight}입니다')
+
+
+# 24. break
+
 
