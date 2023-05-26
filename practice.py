@@ -883,4 +883,80 @@ price = get_price(review=True) # 키워드 값의 순서는 상관 없음
 print(f'손님께서 결제할 금액은 {price}원 입니다')
 
 # 30. 가변인자
+''' 개수가 바뀔 수 있는 인자를 의미 이 함수를 호출할 때 전달값이 몇 개가 될지 모르는 경우
+개수를 신경쓰지 않고 함수를 사용할 수 있게 해줌 사용방법은
+*전달값 형식으로 전달값 앞에 *을 붙여주면 됨
+이때 값은 튜플 형태로 값들을 받게 됨
+주의할 점은 가변인자는 마지막에 위치한 전달값 하나에만 사용해야 한다 '''
     
+def visit(today, *customers): #today는 오늘의 날짜를 전달받음
+    print(today) #날짜 출력
+    for customer in customers:
+        print(customer) # customer 변수에 custmoers 전달값이 들어가서 반복문으로 모든 고객의 이름을 출력
+
+visit('2022년 05월 25일', '나장발') # 한 명일때
+visit('2022년 05월 25일', '나장발', '나숙숙') # 두 명일때
+visit('2022년 05월 25일', '나장발', '나숙숙', '나두두') # 세명 명일때
+
+# 31.지역변수
+
+''' 함수 내에서 정의된 변수를 의미 지역 변수는 그 함수 내에서만 사용 가능'''
+
+def secret():
+    message = '이건 나의 비밀' # secret 함수 내에서 정의된 message는 해당 함수에서만 사용가능(다른 함수 및 함수 밖에서 사용 x)
+    print(message) # 값 출력
+    message= '함수 내에서는 자유롭게 수정이 가능해요'
+
+
+# 31. 전역변수
+
+''' 함수 안이나 밖이나 상관없이 어디서든 사용가능 '''
+
+message = '나는 전역 변수'
+
+print(message)
+
+def no_secret():
+    global message # 전역 변수 사용, 없으면 여기서 만듬
+    message = '이러면 또 지역변수'
+    print(message) # 이 경우 지역변수로 출력됨
+
+no_secret()
+
+message = '나는 전역 변수'
+
+print(message)
+
+message = '나는 전역 변수'
+
+print(message)
+
+def no_secret():
+    global message # 전역 변수 사용, 없으면 여기서 만듬
+    message = '오 진짜 전역변수'
+    print(message) # 이 경우 지역변수로 출력됨
+
+no_secret()
+print(message)
+
+x = 3
+def add():
+    x = 6
+    x += 3
+add()
+print(x)
+''' add() 함수 내에서 x = 6과 같이 global 선언 없이 값을 설정하면
+x라는 지역 변수가 새로 생기게 됨, 그래서 전역 변수인 x는 변함 없이 3'''
+
+# 32. 사용자 입력
+
+''' 입력값은 항상 문자열 형태 4라는 숫자열을 써도 문자열 '4'의 문자열 형태로 바뀜
+이럴때는 형변환을 이용하면 됨(int로 input을 감싸면 숫자열의 형태로 값을 받음)'''
+
+name = input('예약자분 성함이 어떻게 되나요?')
+print(name)
+
+num = int(input('총 몇 분이세요?'))
+
+if num > 4:
+    print('죄송하지만 저희 식당은 최대 4분 까지만 예약 가능합니다')
