@@ -1,24 +1,8 @@
 
-def get_price(is_vip=False,
-              is_birthday=False,
-              is_membership=False,
-              card=False,
-              review=False,
-              first_time=False):
-    if is_vip == True:
-        return 10000
-    elif is_birthday == True:
-        return 12000
-    elif is_membership == True:
-        return 13000
-    elif card == True:
-        return 14000
-    elif review == True:
-        return 11000
-    elif first_time == True:
-        return 10000
-    else :
-        return 15000
-    
-price = get_price(review=True)
-print(f'손님께서 결제할 금액은 {price}원 입니다')
+class BlackBox:
+    pass #pass는 구현해야 하는 부분을 잠시 미뤄두기 위해서 사용
+b1 = BlackBox() # 변수를 선언하듯 객체 b1을 작성하고 = 뒤에 클래스명 작성
+b1.name = '까망이' #변수 선언 b1이라는 객체에 name이라는 변수를 선언함
+print(b1.name)
+#b1 객체가 BlackBox의 인스턴스가 맞는지 확인하려면
+print(isinstance(b1, BlackBox))

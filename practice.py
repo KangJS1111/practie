@@ -960,3 +960,75 @@ num = int(input('총 몇 분이세요?'))
 
 if num > 4:
     print('죄송하지만 저희 식당은 최대 4분 까지만 예약 가능합니다')
+
+dream = input('당신의 꿈은 무엇인가요?')
+print(f'나의 꿈은 {dream}입니다')
+
+# 33. 파일입출력
+''' open() 코드를 통해 파일에 텍스트를 쓰거나 파일로부터 읽어올 수 있음'''
+
+# 예시
+open(파일명, 열기 모드, encoding='인코딩')
+
+'''열기모드
+r : read(읽기)
+a : append(이어서 쓰기)
+w : write(쓰기)'''
+
+# 파일 쓰기
+f = open('list.txt', 'w', encoding='utf8') #쓰기 모드로 파일열기
+f.write('김xx\n') #문장 입력하기
+f.write('정xx\n') #문장 입력하기
+f.write('허xx\n') #문장 입력하기
+f.close() # 파일 
+
+''' 파일을 열었으면 반드시 .close()로 닫아줘야 함'''
+
+#파일 읽기
+f = open('list.txt','r',encoding='utf8') #읽기 모드로 파일열기
+contents = f.read() # 파일 내용 다 읽어오기
+print(contents)
+f.close()
+
+#파일을 한 줄 씩 읽고 싶은 경우
+f = open('list.txt','r',encoding='utf8')
+for line in f:
+    print(line, end='')
+f.close
+
+# 34. with
+''' 블럭을 벗어나면 자동으로 파일 닫음(close) 때문에 
+따로 close함수를 사용하지 않아도 됨'''
+
+'''f = open('list.txt', 'w', encoding='utf8')'''
+#해당 코드가 with을 사용하면
+
+with open('list1.txt','w', encoding='utf8') as f: # 콜론 다음부터 들여쓰기 해서 코드를 작성하면 됨
+    f.write('김xx\n')
+    f.write('정xx\n')
+    f.write('허xx\n')  
+
+with open('list1.txt','r',encoding='utf8') as f:
+    contents = f.read()
+    print(contents)
+
+# 35. 클래스
+
+'''여러 변수들을 묶어서 한 번에 관리할 수도 있고 클래스 안에 어떤 기능을 하는
+함수와 같은 걸 만들어서 동작할 수 있음'''
+
+''' A 클래스로부터 만들어진 객체(object) B가 있다고 할 때,
+B는 A의 인스턴스(instance)라고 표현한다'''
+
+# 클래스의 형태
+
+class 클래스명:
+    클래스를 정의
+
+class BlackBox:
+    pass #pass는 구현해야 하는 부분을 잠시 미뤄두기 위해서 사용
+b1 = BlackBox() # 변수를 선언하듯 객체 b1을 작성하고 = 뒤에 클래스명 작성
+b1.name = '까망이' #변수 선언 b1이라는 객체에 name이라는 변수를 선언함
+print(b1.name)
+#b1 객체가 BlackBox의 인스턴스가 맞는지 확인하려면
+print(isinstance(b1, BlackBox))#값이 True이면 인스턴스가 맞음
