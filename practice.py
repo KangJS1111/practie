@@ -1032,3 +1032,137 @@ b1.name = '까망이' #변수 선언 b1이라는 객체에 name이라는 변수�
 print(b1.name)
 #b1 객체가 BlackBox의 인스턴스가 맞는지 확인하려면
 print(isinstance(b1, BlackBox))#값이 True이면 인스턴스가 맞음
+
+class BlackBox:
+    pass
+
+b1 = BlackBox()
+b1.name = '까망이'
+
+b2 = BlackBox()
+print(b2.name)
+
+''' __init__은 반드시 첫 번째 인수로 self를 지정해야됨'''
+class BlackBox():
+    def __init__(self,name,price): ## 각각 객체를 만들때 넣어주는 초기화 역할을 하는게__init__
+        self.name = name # self.name을 멤버 변수라함
+        self.price = price # self.price를 멤버 변수라함
+
+b1 = BlackBox('까망이',200000)
+print(b1.name,b1.price)
+b2 = BlackBox('하양이',100000)
+print(b2.name,b2.price)
+
+''' 멤버 변수는 클래스 객체마다 서로 다른 값을 가질 수 있음 멤버 변수는 모든 객체가 아닌
+특정 객체에만 추가할 수 있음'''
+
+
+# 클래스에 특정한 기능을 넣으려고 하는 경우 
+class BlackBox:
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+        
+    def set_travel_model(self): # 전달 받는 값이 없다면 self 하나만 적어도 됨
+        print('여행 모드 ON')
+
+b1 = BlackBox('까망이', 200000)
+b1.set_travel_model() # 실행 결과 : 여행 모드 ON
+
+#메소드에 전달값이 필요한 경우
+
+class BlackBox:
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+        
+    def set_travel_model(self, min):# 여행 모드 시간(분)
+        print(str(min) + '분 동안 여행모드 ON')
+
+b1 = BlackBox('까망이', 2000000)
+b1.set_travel_model(20)#괄호 안에 들어가는 숫자는 min에 들어가는 값임
+
+class Student:
+    def intorduce(self, name, age):
+        print(f'제 이름은 {name}이고 {age} 살입니다')
+
+student = Student()
+student.intorduce('나도코딩',29)
+
+'''클래스 내에서 메소드를 정의할 때 self를 사용
+이때 self는 객체 자기자신을 의미함'''
+
+class BlackBox:
+    def __init__(self,name,price):
+        self.name=name
+        self.price=price
+
+    def set_travel_mode(self,min): # self에는 b1이나 b2같은 객체 자기 자신이 들어가게 됨
+        print(f'{self.name} {min}분 동안 여행모드 ON')
+    
+b1 = BlackBox('까망이','200000')
+b2 = BlackBox('하양이','100000')
+
+b1.set_travel_mode(20)
+b2.set_travel_mode(10)
+
+'''self
+1. 메소드를 정의할 때 처음 전달값은 반드시 sefl
+2. 메소드 내에서는 self.name과 같은 형태로 멤버변수를 사용
+객체를 통해 메소드를 호출할 때 self 부분에 해당하는 전달값은 따로 명시하지 않아도 됨'''
+
+# 36. 상속
+'''상속이란 A 클래스에서 사용하는 모든 코드들을 그대로 물려 받아서 B 클래스에 사용하거나
+추가로 필요한 내용들을 코드로 확장하는 개념
+이때 상속 해준 클래스를 부모 클래스라고 하며 상속 받은 클래스는 자식클래스라 한다''' 
+
+
+#기본 블랙박스
+class BlackBox:
+    def __init__(self,name,price):
+        self.name = name
+        self.price = price
+
+
+#여행 모드 지원 블랙박스
+class TravelBlackBox:
+    def __init__(self,name,price):
+        self.name = name
+        self.price = price
+
+    def set_travel_mode(self,min):
+        print(str(min)+'분 동안 여행모드 ON')
+
+''' 특정 클래스를 상속받으려면'''
+
+class BlackBox:
+    def __init__(self,name,price):
+        self.name = name
+        self.price = price
+
+class TravelBlackBox(BlackBox): #상속 받을 클래스의 괄호안에 상속해줄 클래스를 작성하면 된다
+    def set_travel_mode(self,min):
+        print(str(min)+'분 동안 여행모드 ON')
+    # __init__ 메소드를 기본 블랙박스 클래스에서 상속받았기 때문에 작성하지 않아도 됨
+b1 = TravelBlackBox('하양이',100000)#하양이와 가격이 부모 클래스에 존재하는 init메소드의 name과 price라는 멤버변수로 설정됨
+print(b1.name,b1.price)
+b1.set_travel_mode(20)
+
+#. 37. super
+
+''' 상속 받은 클래스에서 새로운 멤버 변수를 만들려고 하는 경우 부모클래스.메소드(self)보다
+간편하게 super().메소드()를 이용해
+상속 받은 채 새로운 변수를 추가할 수 있다'''
+
+class BlackBox:
+    def __init__(self,name,price):
+        self.name = name
+        self.price = price
+
+class TravelBlackBox(BlackBox): #상속 받을 클래스의 괄호안에 상속해줄 클래스를 작성하면 된다
+    def __init__(self,name,price,sd):
+     super().__init(name,price)
+     self.sd = sd
+    
+     def set_travel_mode(self,min):
+        print(str(min)+'분 동안 여행모드 ON')
