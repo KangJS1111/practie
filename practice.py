@@ -1161,8 +1161,37 @@ class BlackBox:
 
 class TravelBlackBox(BlackBox): #상속 받을 클래스의 괄호안에 상속해줄 클래스를 작성하면 된다
     def __init__(self,name,price,sd):
-     super().__init(name,price)
+     super().__init__(name,price)
      self.sd = sd
     
      def set_travel_mode(self,min):
         print(str(min)+'분 동안 여행모드 ON')
+
+#. 38 다중상속
+''' 여러 개의 클래스에서 상속받는 것을 다중상속이라고 부름'''
+
+#추억용 영상 제작 기능 구현 클래스
+
+class VideoMaker:
+    def make(self):
+        print('추억용 여행 영상 제작')
+
+class MailSender:
+    def send(self):
+        print('메일 발송')
+
+class BlackBox:
+    def __init__(self,name,price):
+        self.name = name
+        self.price = price
+
+class TravelBlackBox(BlackBox,VideoMaker,MailSender):
+    def __init__(self,name,price,sd):
+     super().__init__(name,price)
+     self.sd = sd
+    
+     def set_travel_mode(self,min):
+        print(str(min)+'분 동안 여행모드 ON')
+b1 = TravelBlackBox('하양이', 100000, 64)
+b1.make()
+b1.send()
