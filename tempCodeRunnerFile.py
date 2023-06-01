@@ -1,24 +1,12 @@
 
-class VideoMaker:
-    def make(self):
-        print('추억용 여행 영상 제작')
-
-class MailSender:
-    def send(self):
-        print('메일 발송')
-
-class BlackBox:
-    def __init__(self,name,price):
-        self.name = name
-        self.price = price
-
-class TravelBlackBox(BlackBox,VideoMaker,MailSender):
-    def __init__(self,name,price,sd):
-     super().__init__(name,price)
-     self.sd = sd
-    
-     def set_travel_mode(self,min):
-        print(str(min)+'분 동안 여행모드 ON')
-b1 = TravelBlackBox('하양이', 100000, 64)
-b1.make()
-b1.send()
+try:
+    num1 = 1
+    num2 = 3
+    result = num1 / num2 # num1 = 3, num2 = 0 이라고 가정 모든 수는 0으로 나눌 수 없기 때문에 에러가 발생할 문장
+    print(f'연산 결과는 {result}입니다')
+except:
+    print('맞지 않는 식입니다')
+else:
+    print('정상 동작했습니다')
+finally:
+    print('끝')

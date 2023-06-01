@@ -1195,3 +1195,51 @@ class TravelBlackBox(BlackBox,VideoMaker,MailSender):
 b1 = TravelBlackBox('하양이', 100000, 64)
 b1.make()
 b1.send()
+
+# 메소드 오버라이딩
+
+'''자식 클래스에서 같은 메소드를 새로 정의하지 않으면 부모 클래스의 메소드를
+자식 클래스에서 같은 메소드를 새로 정의하면 자식 클래스의 메소드를 이를 메소드 오버라이딩
+이라 한다. 즉 메소드를 새로 정의하는 것 '''
+
+#(개선)여행 모드 지원 블랙박스
+
+class AdvancedTravelBlackBox(TravelBlackBox):
+    def set_travel_mode(self, min):
+        print(str(min)+'분 동안 여행 모드 ON')
+        self.make()
+        self.send()
+
+b2 = AdvancedTravelBlackBox('하양이',100000,64)
+b2.set_travel_mode(15)
+
+
+''' pass를 이용하면 완성되지 않은 코드를 호출해도 에러가 발생하지 않음 
+때문에 미완성된 메소드들에 pass만 작성해서 나중에 작성할 수 있음
+pass는 클래스 메소드 뿐만 아니라 for,while(while문의 경우 무란 루프가 발생할 수 있음) 반복문 if 조건문, 함수 등에도 사용될 수 있음'''
+
+# 예외 처리
+
+'''오류 발생될 것 같은 상황에서 프로그램이 올바르게 작동하게 하는 것이 예외 처리이다'''
+
+#형태
+try:
+    수행문장 # 에러가 발생할 가능성이 있는 문장
+except:
+    에러 발생 시 수행 문장 # 에러 상황이 발생했을 때만 수행할 문장
+else:
+    정상 동작 시 수행 문장 # 에러가 발생하지 않았을 때만 수행할 문장
+finally:
+    마지막으로 수행할 문장 # 에러 여부 상관 없이 항상 수행되는 문장
+
+try:
+    num1 = 1
+    num2 = 3
+    result = num1 / num2 # num1 = 3, num2 = 0 이라고 가정 모든 수는 0으로 나눌 수 없기 때문에 에러가 발생할 문장
+    print(f'연산 결과는 {result}입니다')
+except:
+    print('맞지 않는 식입니다')
+else:
+    print('정상 동작했습니다')
+finally:
+    print('끝')
